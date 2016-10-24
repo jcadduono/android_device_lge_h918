@@ -1,0 +1,20 @@
+on fs
+    # questionable block locations
+    symlink /dev/block/platform /dev/block/platform/soc
+
+# encryption support
+on init
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+
+service qseecomd /sbin/qseecomd
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on property:ro.crypto.state=encrypted
+    start qseecomd
