@@ -4,6 +4,10 @@ on init
 
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
     write /sys/class/android_usb/android0/f_ffs/aliases adb
+    write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
+    write /sys/class/android_usb/android0/f_rndis/vendorID 18D1
+    write /sys/class/android_usb/android0/f_rndis/wceis 1
+    write /sys/class/android_usb/android0/f_mass_storage/inquiry_string ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/functions mtp,adb
 
     # set up the usb mass storage lun
@@ -22,7 +26,6 @@ on boot
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/idVendor 18D1
     write /sys/class/android_usb/android0/idProduct 4EE2
-    write /sys/devices/platform/lge_android_usb/model_name ${ro.product.model}
 
     setprop sys.usb.config ${persist.sys.usb.config}
 
