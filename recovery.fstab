@@ -9,7 +9,6 @@
 /efs1		emmc	/dev/block/bootdevice/by-name/modemst1	flags=backup=1;display="EFS"
 /efs2		emmc	/dev/block/bootdevice/by-name/modemst2	flags=backup=1;subpartitionof=/efs1
 /efsg		emmc	/dev/block/bootdevice/by-name/fsg	flags=backup=1;subpartitionof=/efs1
-# /firmware is disabled because it isn't needed until encryption works
-#/firmware	vfat	/dev/block/bootdevice/by-name/modem	flags=backup=1;display="Firmware";mounttodecrypt;fsflags=context=u:object_r:firmware_file:s0
+/firmware	vfat	/dev/block/bootdevice/by-name/modem	flags=backup=1;display="Firmware";mounttodecrypt;fsflags=context=u:object_r:firmware_file:s0
 /external_sd	vfat	/dev/block/mmcblk0p1 /dev/block/mmcblk0	flags=storage;wipeingui;removable;encryptable=/dev/block/bootdevice/by-name/encrypt
 /usb-otg	vfat	/dev/block/sdh1 /dev/block/sdh		flags=storage;wipeingui;removable
